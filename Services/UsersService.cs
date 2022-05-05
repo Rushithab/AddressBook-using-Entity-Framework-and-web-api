@@ -10,13 +10,13 @@ namespace Addressbookapi.Services
         {
             _context = context;
         }
-        public Contact Create(Contact contact)
+        public int Create(Contact contact)
         {
             _context.Contacts.Add(contact);
             _context.SaveChanges();
-            return contact;
+            var contactId=contact.Id;
+            return contactId;
         }
-
         public bool Delete(int id)
         {
             var contactToDelete =  _context.Contacts.Find(id);
