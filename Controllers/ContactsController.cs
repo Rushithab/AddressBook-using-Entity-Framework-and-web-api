@@ -16,14 +16,14 @@ namespace Addressbookapi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Contact>> GetContacts()
         {
-            var allData= _contactService.GetContacts();
-            return Ok(allData);
+            var allContacts= _contactService.GetContacts();
+            return Ok(allContacts);
         }
         [HttpGet("{id}")]
         public ActionResult<Contact> GetContactById(int id)
         {
-            var Data= _contactService.GetContactById(id);
-            return Ok(Data);
+            var data= _contactService.GetContactById(id);
+            return Ok(data);
         }
         [HttpPost]
         public ActionResult<Contact> PostContact([FromBody] Contact contact)
