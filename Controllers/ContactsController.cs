@@ -32,7 +32,7 @@ namespace Addressbookapi.Controllers
             return Ok();
         }
         [HttpPut]
-        public ActionResult PutBooks([FromBody] Contact contact,int id)
+        public ActionResult PutContacts([FromBody] Contact contact,int id)
         {
             var updatedData=  _userService.Update(contact,id);
             return Ok(updatedData); 
