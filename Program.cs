@@ -4,12 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped<IContactService, ContactService>();
 builder.Services.AddDbContext<ContactContext>(o => o.UseSqlite("Data source=contacts.db"));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
