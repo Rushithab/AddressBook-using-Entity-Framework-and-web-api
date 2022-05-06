@@ -1,4 +1,4 @@
-﻿using Addressbookapi.Models;
+using Addressbookapi.Models;
 using Addressbookapi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,40 +8,40 @@ namespace Addressbookapi.Controllers
     [ApiController]
     public class ContactsController : ControllerBase
     {
-        private readonly IUsersService _userService;
-        public ContactsController(IUsersService contactRepository)
+        private readonly IContactService _contactService;
+        public ContactsController(IContactService contactRepository)
         {
-            _userService = contactRepository;
+            _contactService = contactRepository;
         }
         [HttpGet]
-        public ActionResult<IEnumerable<Contact>> GetContact()
+        public ActionResult<IEnumerable<Contact>> GetContacts()
         {
-            var allData= _userService.Get();
+            var allData= _contactService.GetContacts();
             return Ok(allData);
         }
         [HttpGet("{id}")]
-        public ActionResult<Contact> GetContact(int id)
+        public ActionResult<Contact> GetContactById(int id)
         {
-            var Data= _userService.Get(id);
+            var Data= _contactService.GetContactById(id);
             return Ok(Data);
         }
         [HttpPost]
         public ActionResult<Contact> PostContact([FromBody] Contact contact)
         {
-            _userService.Create(contact);
+            _contactService.CreateContact(contact);
             return Ok();
         }
         [HttpPut]
-        public ActionResult PutContacts([FromBody] Contact contact,int id)
+        public ActionResult PutContact([FromBody] Contact contact,int id)
         {
-            var updatedData=  _userService.Update(contact,id);
+            var updatedData=  _contactService.UpdateContact(contact,id);
             return Ok(updatedData); 
         }
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public ActionResult DeleteContact(int id)
         {
-            var contactToDelete =  _userService.Get(id);
-            _userService.Delete(contactToDelete.Id);
+            var contactToDelete =  _contactService.GetContactById(id);
+            _contactService.DeleteContact(contactToDelete.Id);
             return Ok() ;
         }
     }
