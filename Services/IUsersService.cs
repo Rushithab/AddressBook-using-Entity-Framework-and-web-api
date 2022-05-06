@@ -1,13 +1,13 @@
-﻿using Addressbookapi.Models;
+using Addressbookapi.Models;
 
 namespace Addressbookapi.Services
 {
-    public interface IUsersService
+    public interface IContactService
     {
-        public List<Contact> Get();
-        public Contact Get(int id);
-        public int Create(Contact contact);
-        public bool Update(Contact contact,int id);
-        public bool Delete(int id);
+        public List<Contact> GetContacts();
+        public Contact GetContactById(int id);
+        public int CreateContact(Contact contact);
+        public bool UpdateContact(Contact contact,int id);
+        public bool DeleteContact(int id);
     }
 }
