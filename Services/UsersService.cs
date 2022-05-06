@@ -1,23 +1,23 @@
-﻿using Addressbookapi.Models;
+using Addressbookapi.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Addressbookapi.Services
 {
-    public class UsersService : IUsersService
+    public class ContactService : IContactService
     {
         private readonly ContactContext _context;
-        public UsersService(ContactContext context)
+        public ContactService(ContactContext context)
         {
             _context = context;
         }
-        public int Create(Contact contact)
+        public int CreateContact(Contact contact)
         {
             _context.Contacts.Add(contact);
             _context.SaveChanges();
             var contactId=contact.Id;
             return contactId;
         }
-        public bool Delete(int id)
+        public bool DeleteContact(int id)
         {
             var contactToDelete =  _context.Contacts.Find(id);
             if(contactToDelete != null)
@@ -29,16 +29,16 @@ namespace Addressbookapi.Services
             else
                 return false;
         }
-        public List<Contact> Get()
+        public List<Contact> GetContacts()
         {
-            var allData= _context.Contacts.ToList();
-            return allData;
+            var allContacts= _context.Contacts.ToList();
+            return allContacts;
         }
-        public Contact Get(int id)
+        public Contact GetContactById(int id)
         {
             return _context.Contacts.Find(id);
         }
-        public bool Update(Contact contact,int id)
+        public bool UpdateContact(Contact contact,int id)
         {
             var contactToUpdate= _context.Contacts.AsNoTracking().FirstOrDefault(x => x.Id == id);
             if(contactToUpdate!=null)
@@ -49,6 +49,7 @@ namespace Addressbookapi.Services
             }
             else
                 return false;
-        }    
+        }
+           
     }
 }
